@@ -3,8 +3,8 @@ import os
 import canonicaljson
 
 from flask import Flask, send_from_directory, render_template, flash, abort
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)

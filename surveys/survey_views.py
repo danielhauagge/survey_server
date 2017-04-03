@@ -5,7 +5,7 @@ import os
 
 from flask import request, render_template, render_template_string, g, \
     flash, url_for, redirect
-from flask.ext.login import current_user, login_required
+from flask_login import current_user, login_required
 # from wtforms import BooleanField, TextField, PasswordField, validators, \
 #     TextAreaField, SelectField, RadioField
 # from flask.ext.sqlalchemy import SQLAlchemy

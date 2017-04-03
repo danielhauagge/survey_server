@@ -2,7 +2,7 @@
 
 from flask import Flask, jsonify, make_response, request, abort, send_file, \
                   render_template, send_from_directory, redirect, json, url_for
-import flask.ext.login as flask_login
+import flask_login
 
 from sqlalchemy.sql import exists
 

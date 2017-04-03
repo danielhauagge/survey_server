@@ -1,7 +1,7 @@
 from wtforms import TextField, PasswordField
 from wtforms.validators import Required
 
-from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask_login import login_user, logout_user, current_user, login_required
 from flask import request, render_template, g, flash, redirect, url_for
 from flask_wtf import Form
 
