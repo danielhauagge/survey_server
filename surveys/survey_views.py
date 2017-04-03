@@ -4,14 +4,13 @@ import json
 import os
 
 from flask import request, render_template, render_template_string, g, \
-    flash, url_for, redirect, jsonify
+    flash, url_for, redirect
 from flask.ext.login import current_user, login_required
-from flask_wtf import Form
-from wtforms import BooleanField, TextField, PasswordField, validators, \
-    TextAreaField, SelectField, RadioField
-from flask.ext.sqlalchemy import SQLAlchemy
+# from wtforms import BooleanField, TextField, PasswordField, validators, \
+#     TextAreaField, SelectField, RadioField
+# from flask.ext.sqlalchemy import SQLAlchemy
 
-from werkzeug.datastructures import MultiDict
+# from werkzeug.datastructures import MultiDict
 
 import wtforms_json
 wtforms_json.init()
@@ -28,8 +27,10 @@ SurveyQuestionForm = survey_form_module.SurveyQuestionForm
 # Reference:
 # - On converting to and from to JSON: http://stackoverflow.com/questions/32062097/using-flask-wtforms-validators-without-using-a-form
 
+
 def form_to_json(form):
     return encode_json(form.data)
+
 
 def form_data_from_json(form, json_data):
     for key in json_data:
@@ -37,6 +38,7 @@ def form_data_from_json(form, json_data):
             form.__dict__[key].data = json_data[key]
         else:
             logging.warn('Key "%s" not in form objct, ignoring', key)
+
 
 @app.route('/done')
 @login_required
@@ -51,7 +53,8 @@ def done():
         flash("You still have work to do")
         return redirect(url_for('get_survey_'))
 
-@app.route('/', methods = ['GET'])
+
+@app.route('/', methods=['GET'])
 @login_required
 def get_survey_():
     if 'question_id' not in g.__dict__:
@@ -69,14 +72,15 @@ def get_survey_():
 
     return redirect(url_for('get_survey', question_id=question.id))
 
+
 #request.remote_addr
-@app.route('/<int:question_id>', methods = ['GET', 'POST'])
+@app.route('/<int:question_id>', methods=['GET', 'POST'])
 @login_required
 def get_survey(question_id):
     g.question_id = question_id
 
     question = SurveyQuestion.query.get(g.question_id)
-    if question == None:
+    if question is None:
         return redirect(url_for('get_survey_'))
 
     question_data = json.loads(question.data_json)
@@ -89,7 +93,7 @@ def get_survey(question_id):
 
         answer = question.get_user_answer(current_user.id)
         if answer:
-            answer.answer_json=form_to_json(question_form)
+            answer.answer_json = form_to_json(question_form)
             db.session.merge(answer)
         else:
             answer = SurveyAnswer(user_id=current_user.id, question_id=question.id, answer_json=form_to_json(question_form))
@@ -99,7 +103,7 @@ def get_survey(question_id):
         return redirect(url_for('get_survey', question_id=question.id + 1))
 
     prev_user_answer = question.get_user_answer(current_user.id)
-    if prev_user_answer != None:
+    if prev_user_answer is not None:
         logging.info('Logging previous answer')
         answer_json = json.loads(prev_user_answer.answer_json)
         form_data_from_json(question_form, answer_json)
@@ -115,13 +119,13 @@ def get_survey(question_id):
 
         {form_html}
     {{% endblock %}}
-    '''.format(form_html = question_form.HTML)
+    '''.format(form_html=question_form.HTML)
 
     user = User.query.get(current_user.id)
     n_done = user.get_answered_questions().count()
     n_total = SurveyQuestion.query.count()
 
-    progress_msg ='%d/%d done'%(n_done, n_total)
+    progress_msg = '%d/%d done' % (n_done, n_total)
     progress_perc = 100.0 * float(n_done) / n_total
 
     return render_template_string(final_html, form=question_form,

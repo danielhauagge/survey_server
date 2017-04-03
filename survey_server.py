@@ -13,8 +13,8 @@ import sys
 from getpass import getpass
 from colorama import Fore
 
-from survey_server import app, db, encode_json
-from survey_server.models import User, SurveyQuestion, SurveyAnswer
+from surveys import app, db, encode_json
+from surveys.models import User, SurveyQuestion, SurveyAnswer
 
 # ============================================================================ #
 # TODO                                                                         #

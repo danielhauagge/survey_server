@@ -80,4 +80,4 @@ def encode_json(obj):
 
 
 # import rest of project
-from survey_server import survey_views, auth
+from . import survey_views, auth
