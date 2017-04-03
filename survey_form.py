@@ -1,6 +1,7 @@
 from flask_wtf import Form
 from wtforms import BooleanField, TextField, PasswordField, validators, \
     TextAreaField, SelectField, RadioField
+
 # Reference:
 # http://pythonhosted.org/Flask-Bootstrap/forms.html
 
@@ -27,7 +28,7 @@ class SurveyQuestionForm(Form):
     </form>
     '''
 
-    comments   = TextAreaField(u'Comments', validators=[validators.optional()])
+    comments = TextAreaField(u'Comments', validators=[validators.optional()])
     is_starchy = RadioField('Is there a significant source of starches in the image (e.g., bread, pasta, potatoes, rice)?',
                             [validators.Required()],
                             choices=[('yes', 'Yes'), ('no', 'No'), ('not_sure', 'Not sure')],
