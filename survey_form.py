@@ -7,9 +7,9 @@ from wtforms import BooleanField, TextField, PasswordField, validators, \
 
 class SurveyQuestionForm(Form):
     HTML = '''
-    <h1>Starchy Foods</h1>
-    <a href="/survey/img/{{question_data['image_source']}}"" target="_blank">
-        <img src="/survey/img/{{question_data['image_source']}}"" width="600">
+    <h1>Survey</h1>
+    <a href="{{question_data['image_source']}}"" target="_blank">
+        <img src="{{question_data['image_source']}}"" width="600">
     </a>
     <br>
     <br>
