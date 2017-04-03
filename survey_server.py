@@ -169,7 +169,7 @@ def main_save_results(mode_args):
     logging.info('Saving %d records to %s', len(results), output_fname)
 
     with open(output_fname, 'w') as f:
-        f.write(json.dumps(results))
+        f.write(json.dumps(results) + '\n')
 
 # ============================================================================ #
 # Main                                                                         #
@@ -180,7 +180,7 @@ if __name__ == '__main__':
     # Command line options
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('mode', help='Mode of operation, can be one of "add_data", "add_user", "run", "create_db", "ls_users", "data_info".')
+    parser.add_argument('mode', help='Mode of operation, can be one of "add_data", "add_user", "run", "create_db", "ls_users", "data_info", "results".')
     parser.add_argument('mode_args', nargs='*', help='Arguments for given operation.')
     parser.add_argument(
         "--port", default=DEFAULT_PORT, type=int,
