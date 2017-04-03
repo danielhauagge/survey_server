@@ -18,11 +18,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 def is_safe_path(basedir, fname, follow_symlinks=True):
-  # resolves symbolic links
-  if follow_symlinks:
-    return path.realpath(fname).startswith(basedir)
+    # resolves symbolic links
+    if follow_symlinks:
+        return path.realpath(fname).startswith(basedir)
 
-  return path.abspath(fname).startswith(basedir)
+    return path.abspath(fname).startswith(basedir)
 
 
 # Basic calls to grab static content
@@ -30,13 +30,16 @@ def is_safe_path(basedir, fname, follow_symlinks=True):
 def send_js(fname):
     return send_from_directory(path.join(app_dir, 'static/js'), fname)
 
+
 @app.route('/css/<fname>')
 def send_css(fname):
     return send_from_directory(path.join(app_dir, 'static/css'), fname)
 
+
 @app.route('/fonts/<fname>')
 def send_fonts(fname):
     return send_from_directory(path.join(app_dir, 'static/fonts'), fname)
+
 
 @app.route('/survey/data/<fname>')
 def send_local_data(fname):
@@ -47,6 +50,7 @@ def send_local_data(fname):
         return send_from_directory(basedir, fname)
     else:
         return abort(404)
+
 
 @app.route('/survey/img/<fname>')
 def send_local_image(fname):
@@ -70,8 +74,10 @@ lm.login_view = 'login'
 # Bootstrap
 Bootstrap(app)
 
+
 def encode_json(obj):
     return canonicaljson.encode_canonical_json(obj)
+
 
 # import rest of project
 from survey_server import survey_views, auth
