@@ -35,7 +35,7 @@ DEFAULT_PORT = 5555
 
 class LogFormatter(logging.Formatter):
 
-    base_fmt = '[FoodAI] %(asctime)s %(levelname)5s: %(message)s'
+    base_fmt = '[SurveyServer] %(asctime)s %(levelname)5s: %(message)s'
     err_fmt = Fore.RED + base_fmt.format(levelname="ERROR") + Fore.RESET
     dbg_fmt = base_fmt.format(levelname="DEBUG")
     info_fmt = base_fmt.format(levelname="INFO")
