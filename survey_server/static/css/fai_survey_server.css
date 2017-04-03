@@ -1,0 +1,86 @@
+body {
+  padding-top: 50px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  /*text-align: center;*/
+}
+
+.fai_iminfo {
+  padding:1px;
+	height: 500px;
+	width: 500px;
+  background-color: rgb(254,246,231);
+	object-fit: contain;
+}
+
+.fai_padding_between_cols td
+{
+    padding:0 5px 0 5px;
+}
+
+/* ============================================================= */
+table.fai_imlist {
+    width: 100%;
+}
+
+table.fai_imlist thead, table.fai_imlist tbody, table.fai_imlist tr, table.fai_imlist td, table.fai_imlist th 
+{ 
+	display: block; 
+}
+
+table.fai_imlist tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+/*table.fai_imlist thead th {
+    height: 30px;
+}
+*/
+
+table.fai_imlist tbody {
+    height: 600px;
+    overflow-y: auto;
+}
+
+table.fai_imlist thead {
+    /* fallback */
+}
+
+table.fai_imlist tbody td, table.fai_imlist thead th {
+    width: 150px;
+    float: left;
+}
+
+table.fai_imlist td {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+table.fai_imlist th, table.fai_imlist td { 
+  border-top: none !important; 
+}
+
+/* JSON ======================================== */
+pre {
+   background-color: ghostwhite;
+   border: 1px solid silver;
+   padding: 10px 20px;
+   margin: 20px; 
+   }
+.json-key {
+   color: brown;
+   }
+.json-value {
+   color: navy;
+   }
+.json-string {
+   color: olive;
+   }
+
+

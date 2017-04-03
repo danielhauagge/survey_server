@@ -1,0 +1,70 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+{# References:                                                                #}
+{# https://pythonhosted.org/Flask-Bootstrap/basic-usage.html                  #}
+
+{# ========================================================================== #}
+{# Head                                                                       #}
+{# ========================================================================== #}
+{% block head %}
+  {{ super() | safe }}
+  {{ fixes.ie8() }}
+  {% block extra_css %}{% endblock %}
+{% endblock %}
+
+{% block title %}Surveys{% endblock %}
+
+{% block styles %}
+  {{ super() | safe }}
+  <!-- Custom styles for this template -->
+  <link href="/css/fai_survey_server.css" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+  {{ super() | safe }}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    {{tab_names | safe}}.map(function(tab) {
+      if('{{active_tab}}' == tab) $('#tab_' + tab).attr('class', 'active');
+      else $('#tab_' + tab).attr('class', 'inactive');
+    })
+  </script>
+{% endblock %}
+
+{# ========================================================================== #}
+{# Navbar                                                                     #}
+{# ========================================================================== #}
+{% block navbar %}
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Surveys</a>
+      </div>
+      <div class="nav navbar-nav navbar-right">
+         <a href="/logout" class="navbar-brand"><strong>Logout</strong></a>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+
+{# ========================================================================== #}
+{# Content                                                                    #}
+{# ========================================================================== #}
+{% block content %}
+  <div class="container">
+    <div class="starter-template">
+      {{ util.flashed_messages(dismissible=True) }}
+      {% block body_contents %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}
+
