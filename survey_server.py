@@ -102,7 +102,7 @@ def main_run(port, mode_args, debug):
 def main_add_data(mode_args):
     data_fname = mode_args[0]
 
-    data = json.loads(open(data_fname, 'r').read())
+    data = [json.loads(r) for r in open(data_fname, 'r')]
 
     logging.info('Loaded %d records from %s', len(data), data_fname)
 

@@ -26,12 +26,6 @@
 {% block scripts %}
   {{ super() | safe }}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script type="text/javascript">
-    {{tab_names | safe}}.map(function(tab) {
-      if('{{active_tab}}' == tab) $('#tab_' + tab).attr('class', 'active');
-      else $('#tab_' + tab).attr('class', 'inactive');
-    })
-  </script>
 {% endblock %}
 
 {# ========================================================================== #}
